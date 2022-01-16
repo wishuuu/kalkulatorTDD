@@ -6,7 +6,7 @@ namespace Calc
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(8 | 4);
+            
         }
     }
 }

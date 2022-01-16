@@ -127,6 +127,10 @@ namespace CalcClass
                 shortMemory = 0;
                 activeOperation = '=';
             }
+            else if (letter == '!')
+            {
+                calcValue = calcValue ^ long.MaxValue;
+            }
             else
             {
                 if(activeOperation != '=')

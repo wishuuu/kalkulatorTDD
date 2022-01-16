@@ -412,5 +412,14 @@ namespace Tests
             _calcClass.insert('=');
             Assert.AreEqual(28, _calcClass.calcValue);
         }
+
+        [Test]
+        public void NotOperationTest()
+        {
+            _calcClass.insert('8');
+            _calcClass.insert('1'); // 64 + 16 + 1
+            _calcClass.insert('!');
+            Assert.AreEqual(long.MaxValue-81, _calcClass.calcValue);
+        }
     }
 }

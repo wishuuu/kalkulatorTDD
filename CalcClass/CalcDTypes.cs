@@ -12,14 +12,14 @@ namespace CalcClass
 
     public class TypesFunctions
     {
-        public long getMaxValue(CalcDTypes dType)
+        public long getFullBytes(CalcDTypes dType)
         {
             switch (dType)
             {
-                case CalcDTypes.TypByte8: return byte.MaxValue;
-                case CalcDTypes.TypeWWord16: return Int16.MaxValue;
-                case CalcDTypes.TypeDWord32: return Int32.MaxValue;
-                case CalcDTypes.TypeQWord64: return Int64.MaxValue;
+                case CalcDTypes.TypByte8: return sbyte.MinValue;
+                case CalcDTypes.TypeWWord16: return Int16.MinValue;
+                case CalcDTypes.TypeDWord32: return Int32.MinValue;
+                case CalcDTypes.TypeQWord64: return Int64.MinValue;
                 default: return 0;
             }
         }

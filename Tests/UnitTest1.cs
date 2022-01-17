@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using CalcClass;
-
 namespace Tests
 {
     [TestFixture]
@@ -419,7 +418,95 @@ namespace Tests
             _calcClass.insert('8');
             _calcClass.insert('1'); // 64 + 16 + 1
             _calcClass.insert('!');
-            Assert.AreEqual(long.MaxValue-81, _calcClass.calcValue);
+            Assert.AreEqual(long.MinValue + 81, _calcClass.calcValue);
+        }
+
+        [Test]
+        public void ShiftRightTest()
+        {
+            _calcClass.insert('7');
+            _calcClass.insert('<');
+            Assert.AreEqual(14, _calcClass.calcValue);
+        }
+
+        [Test]
+        public void ShiftLetfTest()
+        {
+            _calcClass.insert('8');
+            _calcClass.insert('>');
+            Assert.AreEqual(4, _calcClass.calcValue);
+        }
+    }
+
+    [TestFixture]
+    public class MemoryTests
+    {
+        private CalcClass.CalcClass _calcClass;
+
+        [SetUp]
+        public void Setup()
+        {
+            _calcClass = new CalcClass.CalcClass();
+        }
+
+        [Test]
+        public void WriteAndLoadMemoryTest()
+        {
+            _calcClass.insert('5');
+            _calcClass.insert('4');
+            _calcClass.insert('3');
+            _calcClass.MemorySave();
+            _calcClass.Restart();
+            Assert.AreEqual(0, _calcClass.calcValue);
+            _calcClass.MemoryLoad();
+            Assert.AreEqual(543, _calcClass.calcValue);
+        }
+
+        [Test]
+        public void AddAndSubMemoryTest()
+        {
+            _calcClass.insert('5');
+            _calcClass.insert('3');
+            _calcClass.MemoryAdd();
+            _calcClass.Restart();
+            _calcClass.insert('3');
+            _calcClass.insert('1');
+            _calcClass.MemoryAdd();
+            _calcClass.Restart();
+            _calcClass.insert('7');
+            _calcClass.insert('2');
+            _calcClass.MemorySub();
+            _calcClass.MemoryLoad();
+            Assert.AreEqual(12, _calcClass.calcValue);
+        }
+
+        [Test]
+        public void ClearMemoryTest()
+        {
+            _calcClass.insert('6');
+            _calcClass.insert('2');
+            _calcClass.insert('8');
+            _calcClass.MemoryAdd();
+            _calcClass.Restart();
+            _calcClass.MemoryLoad();
+            Assert.AreEqual(628, _calcClass.calcValue);
+            _calcClass.MemoryClear();
+            _calcClass.MemoryLoad();
+            Assert.AreEqual(0, _calcClass.calcValue);
+        }
+
+        [Test]
+        public void OperationsWithMemoryTest()
+        {
+            _calcClass.insert('5');
+            _calcClass.insert('3');
+            _calcClass.MemorySave();
+            _calcClass.Restart();
+            _calcClass.MemoryLoad();
+            _calcClass.insert('*');
+            _calcClass.insert('3');
+            _calcClass.insert('=');
+            Assert.AreEqual(159, _calcClass.calcValue);
         }
     }
 }

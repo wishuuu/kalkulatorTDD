@@ -6,10 +6,11 @@ namespace CalcClass
     public class CalcClass
     {
         public long calcValue;
-        public long shortMemory;
+        publicz long shortMemory;
         public char activeOperation;
         public bool afterOperactionFlag = false;
-        private SystemsFunctions _systemsFunctions = new SystemsFunctions();
+        private readonly SystemsFunctions _systemsFunctions = new SystemsFunctions();
+        private readonly Memory _memory;
 
         public string calcValuesInActiveSystem {
             get { return this.convertToSystem(calcValue);  }
@@ -53,6 +54,7 @@ namespace CalcClass
             activeOperation = '=';
             CalcSystem = CalcSystems.SystemDec;
             CalcDType = CalcDTypes.TypeQWord64;
+            _memory = new Memory();
         }
 
         public void insert(char letter)
@@ -80,6 +82,13 @@ namespace CalcClass
                 setActiveOperation(letter);
             }
 
+        }
+
+        public void Restart()
+        {
+            calcValue = 0;
+            shortMemory = 0;
+            activeOperation = '=';
         }
 
         private void calculateOperation()
@@ -113,7 +122,7 @@ namespace CalcClass
                 case '^':
                     calcValue ^= shortMemory;
                     break;
-                
+
             }
 
             afterOperactionFlag = true;
@@ -128,9 +137,11 @@ namespace CalcClass
                 activeOperation = '=';
             }
             else if (letter == '!')
-            {
-                calcValue = calcValue ^ long.MaxValue;
-            }
+                calcValue = calcValue ^ long.MinValue;
+            else if (letter == '<')
+                calcValue = calcValue << 1;
+            else if (letter == '>')
+                calcValue = calcValue >> 1;
             else
             {
                 if(activeOperation != '=')
@@ -158,8 +169,35 @@ namespace CalcClass
 
         private bool checkOperationChar(char value)
         {
-            char[] validChars = new char[]{'+','-','*','/','^','%','=','p','&','|','^','!'}; //p - power
+            char[] validChars = new char[]{'+','-','*','/','^','%','=','p','&','|','^','!','>','<'}; //p - power
             return validChars.Contains(value);
+        }
+
+        public void MemoryAdd()
+        {
+            _memory.add(this.calcValue);
+        }
+
+        public void MemorySub()
+        {
+            _memory.substract(this.calcValue);
+        }
+
+        public void MemorySave()
+        {
+            _memory.overwrite(this.calcValue);
+        }
+
+        public void MemoryClear()
+        {
+            _memory.clear();
+        }
+
+        public void MemoryLoad()
+        {
+            if (afterOperactionFlag)
+                shortMemory = calcValue;
+            calcValue = _memory.get();
         }
     }
 }

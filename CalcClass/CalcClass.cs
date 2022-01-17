@@ -6,7 +6,7 @@ namespace CalcClass
     public class CalcClass
     {
         public long calcValue;
-        publicz long shortMemory;
+        public long shortMemory;
         public char activeOperation;
         public bool afterOperactionFlag = false;
         private readonly SystemsFunctions _systemsFunctions = new SystemsFunctions();

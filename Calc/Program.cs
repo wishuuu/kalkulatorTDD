@@ -6,7 +6,11 @@ namespace Calc
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Int16.MinValue);
+            int test = 0;
+            test ^= 1;
+            Console.WriteLine(test);
+            test ^= 1;
+            Console.WriteLine(test);
         }
     }
 }

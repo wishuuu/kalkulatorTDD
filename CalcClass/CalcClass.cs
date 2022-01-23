@@ -6,9 +6,9 @@ namespace CalcClass
     public class CalcClass
     {
         public long calcValue;
-        public long shortMemory;
-        public char activeOperation;
-        public bool afterOperactionFlag = false;
+        private long shortMemory;
+        private char activeOperation;
+        private bool afterOperactionFlag = false;
         private readonly SystemsFunctions _systemsFunctions = new SystemsFunctions();
         private readonly Memory _memory;
 
@@ -27,6 +27,11 @@ namespace CalcClass
                 int[] array = new int[64];
                 long actualValue = calcValue;
                 int i = 0;
+                if (actualValue < 0)
+                {
+                    array[63] = 1;
+                    actualValue = Int64.MinValue + actualValue;
+                }
                 while (actualValue > 0)
                 {
                     array[i] = actualValue % 2 == 1? 1: 0;
@@ -39,10 +44,15 @@ namespace CalcClass
             set
             {
                 calcValue = 0;
-                for(int i=0; i<value.Length; i++)
+                for(int i=value.Length-2; i>=0; i--)
                 {
-                    calcValue += value[i];
                     calcValue *= 2;
+                    calcValue += value[i];
+                }
+
+                if (value[63] == 1)
+                {
+                    calcValue += Int64.MinValue;
                 }
             }
         }
@@ -198,6 +208,11 @@ namespace CalcClass
             if (afterOperactionFlag)
                 shortMemory = calcValue;
             calcValue = _memory.get();
+        }
+
+        public void swapBit(int i)
+        {
+            calcValue ^= (long) Math.Pow(2, i);
         }
     }
 }

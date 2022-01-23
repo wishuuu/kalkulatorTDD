@@ -509,4 +509,64 @@ namespace Tests
             Assert.AreEqual(159, _calcClass.calcValue);
         }
     }
+
+    [TestFixture]
+    public class BinaryArrayTest
+    {
+        private CalcClass.CalcClass _calcClass;
+        private int[] binArray;
+
+        [SetUp]
+        public void Setup()
+        {
+            _calcClass = new CalcClass.CalcClass();
+            binArray = new int[64];
+        }
+
+        [Test]
+        public void ValueChanges()
+        {
+            _calcClass.insert('3');
+            _calcClass.insert('2');
+            binArray[5] = 1;
+            Assert.AreEqual(binArray, _calcClass.binArray);
+        }
+
+        [Test]
+        public void binArrayInsertNegative()
+        {
+            _calcClass.calcValue = -1;
+            for (int i = 0; i < 64; i++) binArray[i] = 1;
+            Assert.AreEqual(binArray, _calcClass.binArray);
+        }
+        
+        [Test]
+        public void binArrayInsert()
+        {
+            binArray[1] = 1;
+            binArray[2] = 1;
+            _calcClass.binArray = binArray;
+            Assert.AreEqual(6, _calcClass.calcValue);
+            Assert.AreEqual(binArray, _calcClass.binArray);
+        }
+
+        [Test]
+        public void BitSwap()
+        {
+            _calcClass.swapBit(5);
+            _calcClass.swapBit(2);
+            _calcClass.swapBit(0);
+            binArray[5] = 1;
+            binArray[2] = 1;
+            binArray[0] = 1;
+            
+            Assert.AreEqual(binArray, _calcClass.binArray);
+            Assert.AreEqual(37, _calcClass.calcValue);
+
+            _calcClass.swapBit(5);
+            binArray[5] = 0;
+            Assert.AreEqual(binArray, _calcClass.binArray);
+            Assert.AreEqual(5, _calcClass.calcValue);
+        }
+    }
 }

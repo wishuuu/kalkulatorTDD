@@ -10,6 +10,7 @@ namespace CalcClass
         private char activeOperation;
         private bool afterOperactionFlag = false;
         private readonly SystemsFunctions _systemsFunctions = new SystemsFunctions();
+        private readonly TypesFunctions _typesFunctions = new TypesFunctions();
         private readonly Memory _memory;
 
         public string calcValuesInActiveSystem {
@@ -91,6 +92,7 @@ namespace CalcClass
             {
                 setActiveOperation(letter);
             }
+            //TODO usuwanie ostatniego znaku
 
         }
 
@@ -165,11 +167,16 @@ namespace CalcClass
                 }
                 activeOperation = letter;
             }
+            
+            numberSizeLimit();
         }
         
         private string convertToSystem(long value)
         {
-            return _systemsFunctions.convertToSystem(value, CalcSystem);
+            if (CalcSystem != CalcSystems.SystemDec)
+                return _systemsFunctions.convertToSystem(value, CalcSystem);
+            else
+                return _typesFunctions.convertDecToType(CalcDType, calcValue).ToString();
         }
 
         private long convertFromSystem(string value)
@@ -213,6 +220,11 @@ namespace CalcClass
         public void swapBit(int i)
         {
             calcValue ^= (long) Math.Pow(2, i);
+        }
+
+        private void numberSizeLimit()
+        {
+            calcValue = calcValue & _typesFunctions.getFullBytes(CalcDType);
         }
     }
 }

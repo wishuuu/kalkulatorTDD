@@ -1,0 +1,91 @@
+.CalculatorArea{
+  position: relative;
+  width: 805px;
+  height: 783px;
+
+  background: linear-gradient(0deg, #19212E, #19212E);
+}
+
+.CalculatorValueArea{
+  position: absolute;
+  width: 705px;
+  height: 100px;
+  left: 50px;
+  top: 50px;
+}
+
+.CalculatorValueBox{
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+
+  background: rgba(255, 255, 255, 0.13);
+  border: 3px solid #6CACDE;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.CalculatorValueAreaText{
+  position: absolute;
+  left: 2.84%;
+  right: 2.84%;
+  top: 0%;
+  bottom: 0%;
+
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 59px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+
+  color: #6CACDE;
+
+  border: 1px solid #000000;
+}
+
+.CalculatorOnButtonText{
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 35px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #6CACDE;
+
+  border: 1px solid #000000;
+}
+
+.CalculatorSumButtonText{
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 42px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #48556A;
+
+  border: 0.5px solid #48556A;
+}

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace CalcClass
+namespace CalcClassProject
 {
     public enum CalcSystems
     {

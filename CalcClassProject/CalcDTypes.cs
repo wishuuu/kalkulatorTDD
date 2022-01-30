@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CalcClass
+namespace CalcClassProject
 {
     public enum CalcDTypes
     {

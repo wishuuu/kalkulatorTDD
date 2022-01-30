@@ -1,4 +1,4 @@
-namespace CalcClass
+namespace CalcClassProject
 {
     public class Memory
     {

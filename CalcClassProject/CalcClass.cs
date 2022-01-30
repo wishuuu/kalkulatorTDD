@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 
-namespace CalcClass
+namespace CalcClassProject
 {
-    public class CalcClass
+    public class CalcClass : ICalcClass
     {
         public long calcValue;
         private long shortMemory;
@@ -68,7 +68,7 @@ namespace CalcClass
             _memory = new Memory();
         }
 
-        public void insert(char letter)
+        public void Insert(char letter)
         {
             if (_systemsFunctions.checkSystemChar(this.CalcSystem, letter))
             {
@@ -217,9 +217,10 @@ namespace CalcClass
             calcValue = _memory.get();
         }
 
-        public void swapBit(int i)
+        public void SwapBit(int i)
         {
-            calcValue ^= (long) Math.Pow(2, i);
+            if (i is >= 0 and <= 63)
+                calcValue ^= (long) Math.Pow(2, i);
         }
 
         private void numberSizeLimit()

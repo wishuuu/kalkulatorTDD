@@ -7,7 +7,7 @@ function App() {
       <div className="CalculatorArea">
         <div className="CalculatorValueArea">
           <div className="CalculatorValueBox">
-            
+
           </div>
         </div>
       </div>

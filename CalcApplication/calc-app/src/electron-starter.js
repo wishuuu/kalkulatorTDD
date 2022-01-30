@@ -8,7 +8,7 @@ const url = require('url');
 let mainWindow;
 
 function createWindow() {
-    mainWindow = new BrowserWindow({width: 805, height: 783});
+    mainWindow = new BrowserWindow({width: 821, height: 842});
 
     mainWindow.loadURL('http://localhost:3000');
 

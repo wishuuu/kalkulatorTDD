@@ -10,7 +10,7 @@ namespace Calc
     {
         private static ICalcClass _calcClass = new CalcClass();
 
-        static void Main(string[] args)
+        static void Main8(string[] args)
         {
             while (true)
             {
